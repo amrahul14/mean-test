@@ -1,0 +1,12 @@
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="nav-logo">⚡</span>
+    <span class="nav-title">MEAN Stack App</span>
+  </div>
+  <div class="nav-actions" *ngIf="authService.isLoggedIn$ | async">
+    <a routerLink="/products" class="nav-link">Products</a>
+    <button (click)="logout()" class="btn-logout">Logout</button>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,28 @@
+<div class="weather-widget">
+  <div class="weather-search">
+    <input
+      type="text"
+      [(ngModel)]="searchCity"
+      placeholder="Search city..."
+      (keyup.enter)="fetchWeather()"
+    />
+    <button (click)="fetchWeather()" [disabled]="loading">
+      {{ loading ? '...' : 'Search' }}
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="weather-loading">Fetching weather...</div>
+  <div *ngIf="error && !loading" class="weather-error">{{ error }}</div>
+
+  <div *ngIf="weather && !loading" class="weather-info">
+    <div class="weather-main">
+      <img [src]="getIconUrl(weather.icon)" [alt]="weather.description" />
+      <div class="weather-temp">{{ weather.temperature | number:'1.0-0' }}°C</div>
+    </div>
+    <div class="weather-details">
+      <div class="weather-city">{{ weather.city }}</div>
+      <div class="weather-desc">{{ weather.description | titlecase }}</div>
+      <div class="weather-humidity">💧 Humidity: {{ weather.humidity }}%</div>
+    </div>
+  </div>
+</div>
